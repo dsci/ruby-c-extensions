@@ -15,5 +15,3 @@ void Init_sub(VALUE parent){
 
   Init_sub_with_block(subTest);
 }
-
-

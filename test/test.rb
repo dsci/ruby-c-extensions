@@ -68,9 +68,35 @@ describe SubWithBlock do
     @with_block = SubWithBlock.new
   end
 
+  describe "class methods" do
+
+    it "provides #my_class_method" do
+      SubWithBlock.must_respond_to(:my_class_method)
+    end
+
+    it "provides #create" do
+      SubWithBlock.must_respond_to(:create)
+    end
+
+    describe "#create" do
+
+      it "returns an instance of SubWithBlock" do
+        @sub = SubWithBlock.create(12)
+        @sub.instance_variable_get(:@voltage).must_equal 12
+        @sub.must_be_instance_of SubWithBlock
+      end
+
+    end
+
+  end
+
   it "has methods" do
     @with_block.must_respond_to(:my_method)
     @with_block.must_respond_to(:remove_last_from_array)
+  end
+
+  it "should be a subclass of MyTest" do
+    SubWithBlock.superclass.must_equal MyChildTest
   end
 
   it "should yield the block" do
